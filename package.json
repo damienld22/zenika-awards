@@ -1,0 +1,17 @@
+{
+  "name": "zenika-awards",
+  "version": "1.0.0",
+  "description": "Applications de vote pour les meilleurs citations entendues chez Zenika",
+  "scripts": {
+    "start:api": "json-server --watch ./api/db.json --port 3001",
+    "start:front": "serve ./front",
+    "start": "concurrently \"npm run start:api\" \"npm run start:front\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "json-server": "^0.17.1",
+    "serve": "^14.2.0"
+  }
+}
