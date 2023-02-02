@@ -1,7 +1,7 @@
 # 🏆 Les Zenika Awards
 
 Application recensant toutes les meilleures citations entendues chez Zenika.  
-Ce projet à pour but d'être un bac à sable pour tester différents outils.
+Ce projet a pour but d'être un bac à sable pour tester différents outils.
 
 ## démarrage
 
