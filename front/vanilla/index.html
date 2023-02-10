@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <title>Zenika Awards</title>
-    <meta name="description" content="Ajoutez des citations entendues chez Zenika">
+    <meta name="description" content="Votez pour ses citations préférées entendues chez Zenika">
     <link rel="preload" onload="this.rel='stylesheet'" as="style" href="./css/style.css">
     <link rel="preload" onload="this.rel='stylesheet'" as="style" href="./css/header.css">
-    <link rel="preload" onload="this.rel='stylesheet'" as="style" href="./css/add-page.css">
-    <script defer src="./js/add-page.js"></script>
+    <link rel="preload" onload="this.rel='stylesheet'" as="style" href="./css/home-page.css">
+    <script defer src="./js/home-page.js"></script>
 </head>
 
 <body>
@@ -20,11 +20,11 @@
             <h1>🏆 Zenika Awards</h1>
             <ul class="header__nav__navbar">
                 <li class="header__nav__item"><a href="/">Accueil</a></li>
-                <li class="header__nav__item"><a href="/add">Ajouter une citation</a></li>
+                <li class="header__nav__item"><a href="/add">Ajoutez une citation</a></li>
             </ul>
         </nav>
         <div class="header__title">
-            <h1>Ajoutez une citation</h1>
+            <h1>Classement des meilleures citations entendues chez Zenika</h1>
         </div>
     </header>
     <svg class="header__svg" viewBox="0 0 1440 120" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -33,28 +33,23 @@
         </path>
     </svg>
     <main>
-        <form class="form" onsubmit="addCitation(event)">
-            <h2 class="form__title">Veuillez renseigner les champs ci-dessous</h2>
-
-            <div class="form__field">
-                <label for="title">Titre*</label>
-                <input type="text" id="title" name="title">
-            </div>
-
-            <div class="form__field">
-                <label for="text">Citation*</label>
-                <textarea id="text" name="text" rows="4" placeholder="Votre plus belle citation ..."></textarea>
-            </div>
-
-            <div class="form__field">
-                <label for="author">Auteur</label>
-                <input type="text" id="author" name="author">
-            </div>
-
-            <button class="form__button" type="submit">Ajouter</button>
-            <em>* Champs obligatoires</em>
-        </form>
+        <div id="content" class="section__content"></div>
+        <nav id="menu" class="section__nav">
+            <h3>Menu</h3>
+            <ol></ol>
+        </nav>
     </main>
+
+    <template id="section-template">
+        <section>
+            <h2></h2>
+            <blockquote></blockquote>
+            <figcaption></figcaption>
+            <div id="quote-tags" class="tags"></div>
+            <div id="quote-buttons" class="buttons"></div>
+        </section>
+    </template>
+
 </body>
 
 </html>

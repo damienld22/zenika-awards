@@ -1,0 +1,10 @@
+{
+    "name": "@front/vanilla",
+    "description": "Application de démonstration vanilla HTML5 & CSS3 saupoudrée de JS",
+    "scripts": {
+        "start": "serve ."
+    },
+    "devDependencies": {
+        "serve": "^14.2.0"
+    }
+}

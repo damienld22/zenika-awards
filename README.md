@@ -7,15 +7,40 @@ Ce projet a pour but d'être un bac à sable pour tester différents outils.
 
 Exécutez les commandes suivantes : 
 
+Installez les dépendences : 
+
 ```bash
-npm i
-# Démarre l'api JSON server et le front via serve
-npm start
+# Si vous n'avez pas pnpm
+npm i -g pnpm
+
+pnpm i
+```
+
+Démarrez le projet que vous voulez tester :
+
+```bash
+# Démarre l'api JSON server et le front classique (HTML / CSS & JS) via serve
+pnpm start:vanilla
+
+# Démarre l'api JSON server et le front Qwik
+pnpm start:qwik
 ```
 
 URLs : 
 - front http://localhost:3000
 - api http://localhost:3001
+
+Exécutez les tests e2e :
+
+```bash
+# Démarre l'api JSON server et le front classique (HTML / CSS & JS) via serve
+pnpm test:e2e:vanilla
+
+# Démarre l'api JSON server et le front Qwik
+pnpm test:e2e:qwik
+```
+
+Un rapport d'`audit` est généré par application dans le dossier `lighthouse`.
 
 ## API
 
