@@ -1,22 +1,14 @@
 import { Component, createResource, For } from "solid-js";
+import { Citation } from "../../pages/Home";
 
-export type Citation = {
-  id: string;
-  text: string;
-  title: string;
-  author?: string;
-  tags: string[];
-  numberOfVotes: number;
+type CitationsListProps = {
+  citations?: Citation[];
 };
 
-const CitationsList: Component = () => {
-  const fetchCitations = async () =>
-    (await fetch("http://localhost:3001/citations")).json();
-  const [citations] = createResource<Citation[]>(fetchCitations);
-
+const CitationsList: Component<CitationsListProps> = (props) => {
   return (
     <div>
-      <For each={citations()}>
+      <For each={props.citations}>
         {(citation) => (
           <section id={`citation-${citation.id}`}>
             <h2>{citation.title}</h2>
