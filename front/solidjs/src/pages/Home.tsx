@@ -1,7 +1,12 @@
 import { Component } from "solid-js";
+import CitationsList from "../components/CitationsList/CitationsList";
 
 const HomePage: Component = () => {
-  return <h1>Home page</h1>;
+  return (
+    <main>
+      <CitationsList />
+    </main>
+  );
 };
 
 export default HomePage;
