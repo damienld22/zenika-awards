@@ -1,6 +1,6 @@
 import { Route, Routes } from "@solidjs/router";
 import { Component, lazy } from "solid-js";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 const Home = lazy(() => import("./pages/Home"));
 const Add = lazy(() => import("./pages/Add"));

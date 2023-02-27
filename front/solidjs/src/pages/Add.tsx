@@ -1,7 +1,12 @@
 import { Component } from "solid-js";
+import CitationForm from "../components/CitationForm/CitationForm";
 
 const AddPage: Component = () => {
-  return <h1>Add page</h1>;
+  return (
+    <div>
+      <CitationForm />
+    </div>
+  );
 };
 
 export default AddPage;
