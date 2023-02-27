@@ -1,9 +1,19 @@
-import type { Component } from "solid-js";
+import { Route, Routes } from "@solidjs/router";
+import { Component, lazy } from "solid-js";
+import Header from "./components/Header";
+
+const Home = lazy(() => import("./pages/Home"));
+const Add = lazy(() => import("./pages/Add"));
 
 const App: Component = () => {
   return (
     <div>
-      <p>Hello world</p>
+      <Header />
+
+      <Routes>
+        <Route path="/" component={Home} />
+        <Route path="/add" component={Add} />
+      </Routes>
     </div>
   );
 };
