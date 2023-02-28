@@ -1,6 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { Component } from "solid-js";
 import { createStore } from "solid-js/store";
+import { addCitation } from "../../api/api";
 import "./CitationForm.css";
 
 type CitationForm = {
@@ -24,7 +25,7 @@ const CitationForm: Component = () => {
     });
   };
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
 
     const { text, title } = form;
@@ -33,19 +34,13 @@ const CitationForm: Component = () => {
       return;
     }
 
-    fetch("http://localhost:3001/citations", {
-      method: "POST",
-      body: JSON.stringify({ ...form, tags: [] }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then(() => {
-        alert("Votre citation a été ajoutée");
-        navigate("/");
-      })
-      .catch(() => alert("Erreur lors de la création"));
+    try {
+      addCitation({ ...form, tags: [] });
+      alert("Votre citation a été ajoutée");
+      navigate("/");
+    } catch {
+      alert("Erreur lors de la création");
+    }
   };
 
   return (
