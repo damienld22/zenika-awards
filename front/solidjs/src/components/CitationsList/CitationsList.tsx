@@ -1,11 +1,31 @@
-import { Component, createResource, For } from "solid-js";
-import { Citation } from "../../pages/Home";
+import { Component, For, Setter } from "solid-js";
+import { Citation, editCitation } from "../../api/api";
 
 type CitationsListProps = {
   citations?: Citation[];
+  mutate: Setter<Citation[]>;
 };
 
 const CitationsList: Component<CitationsListProps> = (props) => {
+  const onIncrement = (citation: Citation) => {
+    const updateObject = { numberOfVotes: ++citation.numberOfVotes };
+    props.mutate((prev) =>
+      prev.map((elt) =>
+        elt.id === citation.id ? { ...elt, ...updateObject } : elt
+      )
+    );
+    editCitation(citation.id, updateObject);
+  };
+  const onDecrement = (citation: Citation) => {
+    const updateObject = { numberOfVotes: --citation.numberOfVotes };
+    props.mutate((prev) =>
+      prev.map((elt) =>
+        elt.id === citation.id ? { ...elt, ...updateObject } : elt
+      )
+    );
+    editCitation(citation.id, updateObject);
+  };
+
   return (
     <div>
       <For each={props.citations}>
@@ -24,9 +44,9 @@ const CitationsList: Component<CitationsListProps> = (props) => {
               </For>
             </div>
             <div id="quote-buttons" class="buttons">
-              <button>👍</button>
-              <button>👎</button>
-              <span>{citation.numberOfVotes ?? 0} points</span>
+              <button onClick={() => onIncrement(citation)}>👍</button>
+              <button onClick={() => onDecrement(citation)}>👎</button>
+              <span>{citation.numberOfVotes} points</span>
             </div>
           </section>
         )}

@@ -6,7 +6,7 @@ import citationsLength from "../stores/citationsLength";
 
 const HomePage: Component = () => {
   const { length, setLength } = citationsLength;
-  const [citations] = createResource<Citation[]>(fetchCitations);
+  const [citations, { mutate }] = createResource<Citation[]>(fetchCitations);
 
   createEffect(() => setLength(citations()?.length || 0));
 
@@ -14,7 +14,7 @@ const HomePage: Component = () => {
     <>
       <p>Number of citations : {length}</p>
       <main>
-        <CitationsList citations={citations()} />
+        <CitationsList citations={citations()} mutate={mutate} />
         <Menu citations={citations()} />
       </main>
     </>
