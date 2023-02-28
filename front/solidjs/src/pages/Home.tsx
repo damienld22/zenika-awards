@@ -1,6 +1,7 @@
-import { Component, createResource } from "solid-js";
+import { Component, createEffect, createResource } from "solid-js";
 import CitationsList from "../components/CitationsList/CitationsList";
 import Menu from "../components/Menu/Menu";
+import citationsLength from "../stores/citationsLength";
 
 export type Citation = {
   id: string;
@@ -12,15 +13,21 @@ export type Citation = {
 };
 
 const HomePage: Component = () => {
+  const { length, setLength } = citationsLength;
   const fetchCitations = async () =>
     (await fetch("http://localhost:3001/citations")).json();
   const [citations] = createResource<Citation[]>(fetchCitations);
 
+  createEffect(() => setLength(citations()?.length || 0));
+
   return (
-    <main>
-      <CitationsList citations={citations()} />
-      <Menu citations={citations()} />
-    </main>
+    <>
+      <p>Number of citations : {length}</p>
+      <main>
+        <CitationsList citations={citations()} />
+        <Menu citations={citations()} />
+      </main>
+    </>
   );
 };
 

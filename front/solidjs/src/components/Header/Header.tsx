@@ -1,3 +1,4 @@
+import { A } from "@solidjs/router";
 import { Component } from "solid-js";
 import { useRouteTitle } from "../../hooks/useRouteTitle";
 import "./Header.css";
@@ -12,10 +13,10 @@ const Header: Component = () => {
           <h1>🏆 Zenika Awards</h1>
           <ul class="header__nav__navbar">
             <li class="header__nav__item">
-              <a href="/">Accueil</a>
+              <A href="/">Accueil</A>
             </li>
             <li class="header__nav__item">
-              <a href="/add">Ajoutez une citation</a>
+              <A href="/add">Ajoutez une citation</A>
             </li>
           </ul>
         </nav>
