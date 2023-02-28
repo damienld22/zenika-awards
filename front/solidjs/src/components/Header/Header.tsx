@@ -1,7 +1,10 @@
 import { Component } from "solid-js";
+import { useRouteTitle } from "../../hooks/useRouteTitle";
 import "./Header.css";
 
 const Header: Component = () => {
+  const { title } = useRouteTitle();
+
   return (
     <>
       <header class="header">
@@ -17,7 +20,7 @@ const Header: Component = () => {
           </ul>
         </nav>
         <div class="header__title">
-          <h1>Classement des meilleures citations entendues chez Zenika</h1>
+          <h1>{title}</h1>
         </div>
       </header>
       <svg
