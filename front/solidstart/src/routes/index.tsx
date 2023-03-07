@@ -15,8 +15,6 @@ export function routeData() {
 export default function Home() {
   const citations = useRouteData<typeof routeData>();
   const [_editing, edit] = createServerAction$(async ({ citationId, edition }: { citationId: string, edition: Partial<Citation> }) => {
-    console.log('==> citationid :', citationId);
-    console.log('==> edition :', edition);
     await fetch(`http://localhost:3001/citations/${citationId}`, {
       method: 'PATCH',
       body: JSON.stringify(edition),
