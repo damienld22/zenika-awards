@@ -1,21 +1,21 @@
-import { Component, createEffect, createResource } from "solid-js";
-import { Citation, fetchCitations } from "../api/api";
+import { Component, createEffect } from "solid-js";
 import CitationsList from "../components/CitationsList/CitationsList";
 import Menu from "../components/Menu/Menu";
+import { useCitations } from "../hooks/useCitations";
 import citationsLength from "../stores/citationsLength";
 
 const HomePage: Component = () => {
   const { length, setLength } = citationsLength;
-  const [citations, { mutate }] = createResource<Citation[]>(fetchCitations);
+  const { items } = useCitations();
 
-  createEffect(() => setLength(citations()?.length || 0));
+  createEffect(() => setLength(items()?.length || 0));
 
   return (
     <>
       <p>Number of citations : {length}</p>
       <main>
-        <CitationsList citations={citations()} mutate={mutate} />
-        <Menu citations={citations()} />
+        <CitationsList citations={items()} />
+        <Menu citations={items()} />
       </main>
     </>
   );

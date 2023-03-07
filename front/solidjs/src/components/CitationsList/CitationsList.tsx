@@ -1,29 +1,18 @@
-import { Component, For, Setter } from "solid-js";
-import { Citation, editCitation } from "../../api/api";
+import { Component, For } from "solid-js";
+import { Citation, useCitations } from "../../hooks/useCitations";
 
 type CitationsListProps = {
   citations?: Citation[];
-  mutate: Setter<Citation[]>;
 };
 
 const CitationsList: Component<CitationsListProps> = (props) => {
+  const { edit, remove } = useCitations();
+
   const onIncrement = (citation: Citation) => {
-    const updateObject = { numberOfVotes: ++citation.numberOfVotes };
-    props.mutate((prev) =>
-      prev.map((elt) =>
-        elt.id === citation.id ? { ...elt, ...updateObject } : elt
-      )
-    );
-    editCitation(citation.id, updateObject);
+    edit(citation.id, { numberOfVotes: ++citation.numberOfVotes });
   };
   const onDecrement = (citation: Citation) => {
-    const updateObject = { numberOfVotes: --citation.numberOfVotes };
-    props.mutate((prev) =>
-      prev.map((elt) =>
-        elt.id === citation.id ? { ...elt, ...updateObject } : elt
-      )
-    );
-    editCitation(citation.id, updateObject);
+    edit(citation.id, { numberOfVotes: --citation.numberOfVotes });
   };
 
   return (
@@ -31,7 +20,12 @@ const CitationsList: Component<CitationsListProps> = (props) => {
       <For each={props.citations}>
         {(citation) => (
           <section id={`citation-${citation.id}`}>
-            <h2>{citation.title}</h2>
+            <div class="citation-title-container">
+              <h2>{citation.title}</h2>
+              <p class="close-icon" onClick={() => remove(citation.id)}>
+                X
+              </p>
+            </div>
             <blockquote>
               <p>{citation.text}</p>
             </blockquote>

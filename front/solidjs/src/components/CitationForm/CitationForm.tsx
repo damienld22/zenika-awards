@@ -1,7 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { Component } from "solid-js";
 import { createStore } from "solid-js/store";
-import { addCitation } from "../../api/api";
+import { useCitations } from "../../hooks/useCitations";
 import "./CitationForm.css";
 
 type CitationForm = {
@@ -12,6 +12,7 @@ type CitationForm = {
 
 const CitationForm: Component = () => {
   const navigate = useNavigate();
+  const { add } = useCitations();
   const [form, setForm] = createStore<CitationForm>({
     title: "",
     text: "",
@@ -35,9 +36,14 @@ const CitationForm: Component = () => {
     }
 
     try {
-      addCitation({ ...form, tags: [] });
-      alert("Votre citation a été ajoutée");
-      navigate("/");
+      const tags: string[] = [];
+      const isAdded = await add({ ...form, tags, numberOfVotes: 0 });
+      if (isAdded) {
+        alert("Votre citation a été ajoutée");
+        navigate("/");
+      } else {
+        alert("Une erreur est survenue lors de l'ajout de la citation");
+      }
     } catch {
       alert("Erreur lors de la création");
     }

@@ -1,9 +1,9 @@
 {
-  "name": "zenika-awards-solidjs",
+  "name": "@front/solidjs",
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "vite",
+    "start": "vite --open",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
